@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <h1>MENU PRINCIPAL</h1>
+        </div>
+      </div>
+      <hr />
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <button class="Acceder_a_ventas" id="btnVentas" type="button">
+            Ventas
+          </button>
+          <div
+            class="row justify-content-center"
+            id="marcas"
+            style="display: none"
+          >
+            <div class="col-md-4 text-center">
+              <img
+                src="Imagenes/lenovo-logo-0.png"
+                alt="Logo de Lenovo"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <img
+                src="Imagenes/samsung-logo.png"
+                alt="Logo de Samsung"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <img
+                src="Imagenes/sony-vector-logo.png"
+                alt="Logo de Sony"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+          </div>
+          <div
+            class="row justify-content-center"
+            id="productosLenovo"
+            style="display: none"
+          >
+            <div class="col-md-4 text-center">
+              <p>Tablet</p>
+              <img
+                src="Imagenes/LenovoProductoUno.webp"
+                alt="Lenovo producto 1"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <p>All in one</p>
+              <img
+                src="Imagenes/LenovoProductoDos.webp"
+                alt="Lenovo producto 2"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <p>Notebook</p>
+              <img
+                src="Imagenes/LenovoProductoTres.webp"
+                alt="Lenovo producto 3"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+          </div>
+          <div
+            class="row justify-content-center"
+            id="productosSamsung"
+            style="display: none"
+          >
+            <div class="col-md-4 text-center">
+              <p>Celular</p>
+              <img
+                src="Imagenes/ProductoSamsungUno.webp"
+                alt="Samsung producto 1"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <p>Tablet</p>
+              <img
+                src="Imagenes/ProductoSamsungDos.png"
+                alt="Samsung producto 2"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <p>Heladera</p>
+              <img
+                src="Imagenes/ProductoSamsungTres.webp"
+                alt="Samsung producto 3"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+          </div>
+          <div
+            class="row justify-content-center"
+            id="productosSony"
+            style="display: none"
+          >
+            <div class="col-md-4 text-center">
+              <p>Reproductor</p>
+              <img
+                src="Imagenes/ProductoSonyUno.avif"
+                alt="Sony producto 1"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <p>Joystick</p>
+              <img
+                src="Imagenes/ProductoSonyDos.jpg"
+                alt="Sony producto 2"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+            <div class="col-md-4 text-center">
+              <p>Camara</p>
+              <img
+                src="Imagenes/ProductoSonyTres.webp"
+                alt="Sony producto 3"
+                class="image"
+                width="200"
+                height="150"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <button
+            onclick="menuPrincipal('2')"
+            type="button"
+            class="btn btn-danger"
+            id="boton"
+          >
+            Compras
+          </button>
+        </div>
+      </div>
+      <hr />
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <button
+            onclick="menuPrincipal('3')"
+            type="button"
+            class="btn btn-danger"
+            id="boton"
+          >
+            Modificacion
+          </button>
+        </div>
+      </div>
+      <hr />
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <button
+            onclick="mostrar()"
+            type="button"
+            class="btn btn-danger"
+            id="boton"
+          >
+            Mostrar lista
+          </button>
+          <p id="listaProductos"></p>
+        </div>
+      </div>
+      <hr />
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+          <button
+            onclick="menuPrincipal('4')"
+            type="button"
+            class="btn btn-danger"
+            id="boton"
+          >
+            Salir
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="Ernesto_fatala.js"></script>
+  </body>
+</html>
