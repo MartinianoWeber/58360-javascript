@@ -47,7 +47,6 @@ formulario.addEventListener("submit", (e) => {
     };
 
     dbProductos.push(producto);
-    rederizarSelect();
 });
 
 // VENDER PRODUCTO
@@ -142,33 +141,49 @@ function renderizarCarrito() {
 
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'La recepcion del mail ha sido confirmada!',
-                    'Su producto llegara pronto.',
-                    'success'
-                )
 
-                console.log(DateTime.now().toLocaleString({ month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }))
-                // emailjs.sendForm(serviceID, templateID, document.querySelector("#form"))
-                //     .then(() => {
-                //         Toastify({
-                //             text: "Email enviado correctamente",
-                //             duration: 3000,
-                //             close: true,
-                //             gravity: "top", // `top` or `bottom`
-                //             position: "right", // `left`, `center` or `right`
-                //             stopOnFocus: true, // Prevents dismissing of toast on hover
-                //             style: {
-                //                 background: "linear-gradient(to right, #00b09b, #96c93d)",
-                //             },
-                //             onClick: function () { } // Callback after click
-                //         }).showToast();
-                //     }, (err) => {
-                //         alert(JSON.stringify(err));
-                //     });
+                esperandoElPago().then((res) => {
+                    Swal.fire(
+                        'La recepcion del mail ha sido confirmada!',
+                        res,
+                        'success'
+                    )
+                    emailjs.sendForm(serviceID, templateID, document.querySelector("#form"))
+                        .then(() => {
+                            Toastify({
+                                text: "Email enviado correctamente",
+                                duration: 3000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+                        }, (err) => {
+                            alert(JSON.stringify(err));
+                        });
+                }).catch((err) => {
+                    Swal.fire(
+                        'Error',
+                        err,
+                        'error'
+                    )
+                })
 
 
+            } else {
+                setTimeout(() => {
+                    Swal.fire(
+                        'Cancelado',
+                        'Tu compra ha sido cancelada',
+                        'error'
+                    )
+                }, 1000)
             }
+
         })
     })
 }
@@ -247,4 +262,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+function esperandoElPago() {
+    return new Promise((resolve, reject) => {
+        const validarPago = Math.random() < 0.5; // Nos devulve true o false(ES ALEATORIO)
+        setTimeout(() => {
+            if (validarPago) {
+                resolve("El pago fue exitoso");
+            } else {
+                reject("El pago no fue exitoso");
+            }
+        }, 3000);
+    });
+}
+
+
+
+setInterval(1000, rederizarSelect);
+
+
+
+// prueba tecnica
+
+console.log(1)
+setTimeout(() =>
+    console.log(2)
+)
+Promise.resolve().then(() => console.log(3))
+Promise.resolve().then(() => setTimeout(() => console.log(4)))
+Promise.resolve().then(() => console.log(5))
+setTimeout(() => console.log(6))
+console.log(7)
+
+// 1 3 5 7 2 4 6
 

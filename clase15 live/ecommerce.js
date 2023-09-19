@@ -47,7 +47,7 @@ formulario.addEventListener("submit", (e) => {
     };
 
     dbProductos.push(producto);
-    rederizarSelect();
+
 });
 
 // VENDER PRODUCTO
@@ -128,7 +128,6 @@ function renderizarCarrito() {
             inputProductos.value += `${producto.nombre} - ${producto.cantidad} \n`
         })
 
-
         Swal.fire({
             title: '¿Queres confirmar la compra?',
             text: "No puedes cancelar la misma!",
@@ -141,35 +140,49 @@ function renderizarCarrito() {
             reverseButtons: true
 
         }).then((result) => {
-            if (result.isConfirmed) {
+            esperandoElpago().then((mensaje) => {
                 Swal.fire(
                     'La recepcion del mail ha sido confirmada!',
-                    'Su producto llegara pronto.',
+                    mensaje.mensaje,
                     'success'
                 )
 
                 console.log(DateTime.now().toLocaleString({ month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }))
-                // emailjs.sendForm(serviceID, templateID, document.querySelector("#form"))
-                //     .then(() => {
-                //         Toastify({
-                //             text: "Email enviado correctamente",
-                //             duration: 3000,
-                //             close: true,
-                //             gravity: "top", // `top` or `bottom`
-                //             position: "right", // `left`, `center` or `right`
-                //             stopOnFocus: true, // Prevents dismissing of toast on hover
-                //             style: {
-                //                 background: "linear-gradient(to right, #00b09b, #96c93d)",
-                //             },
-                //             onClick: function () { } // Callback after click
-                //         }).showToast();
-                //     }, (err) => {
-                //         alert(JSON.stringify(err));
-                //     });
+                emailjs.sendForm(serviceID, templateID, document.querySelector("#form"))
+                    .then(() => {
+                        Toastify({
+                            text: "Email enviado correctamente",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            },
+                            onClick: function () { } // Callback after click
+                        }).showToast();
+                    }, (err) => {
+                        alert(JSON.stringify(err));
+                    });
 
 
-            }
+            }).finally(() => {
+                console.log("Se termino de ejecutar")
+            }).catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.mensaje,
+                    footer: '<a href>Why do I have this issue?</a>'
+                })
+
+            })
+
         })
+
+
+
     })
 }
 
@@ -246,5 +259,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+function esperandoElpago() {
+    return new Promise((resolve, reject) => {
+        const validarPago = Math.random() < 0.5
+        setTimeout(() => {
+            if (false) {
+                resolve({
+                    codigo: 200,
+                    mensaje: "El pago se realizo correctamente"
+                })
+            } else {
+                reject({
+                    codigo: 400,
+                    mensaje: "El pago no se pudo realizar"
+                })
+            }
+        }, 5000)
+    })
+}
 
 
+// let i = 0
+
+// function holaMundo() {
+//     console.log("HOLA MUNDO")
+
+
+// }
+// const intervaloA = setInterval(holaMundo, 1000)
+
+// setTimeout(() => {
+//     clearInterval(intervaloA)
+// }, 5000)
+
+
+setInterval(() => {
+    rederizarSelect()
+}, 5000)
