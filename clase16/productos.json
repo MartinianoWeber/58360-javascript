@@ -1,0 +1,114 @@
+[
+  {
+    "nombre": "Block cummins 6 cilindros",
+    "tipo": "block",
+    "precio": 70000,
+    "descripcion": "descripcion 1",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_808155-MLA48065371452_102021-O.webp",
+    "id": "1"
+  },
+  {
+    "nombre": "Block 6 cilindros",
+    "tipo": "block",
+    "precio": 60000,
+    "descripcion": "descripcion 1",
+    "img": "https://www.pruebaderuta.com/wp-content/uploads/2020/08/motor-linea.jpg",
+    "id": "2"
+  },
+  {
+    "nombre": "Block v8",
+    "tipo": "block",
+    "precio": 100000,
+    "descripcion": "descripcion 1",
+    "img": "https://www.actualidadmotor.com/wp-content/uploads/2012/03/bloque-motor-v8.jpg",
+    "id": "3"
+  },
+  {
+    "nombre": "Subconjunto Motor Chevrolet Silverado 6.07",
+    "tipo": "subconjunto",
+    "precio": 70000,
+    "descripcion": "descripcion 1",
+    "img": "https://synrepuestos.com.ar/wp-content/uploads/2022/02/D_912473-MLA42969125517_082020-F-2.jpg",
+    "id": "4"
+  },
+  {
+    "nombre": "Subconjunto Motor Piston 0.5 Clio 2 1.5 Dci K9k",
+    "tipo": "subconjunto",
+    "precio": 40000,
+    "descripcion": "descripcion 1",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_739447-MLA31588733102_072019-O.webp",
+    "id": "5"
+  },
+  {
+    "nombre": "Subconjunto Gol 1.0",
+    "tipo": "subconjunto",
+    "precio": 38000,
+    "descripcion": "descripcion 1",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_981880-MLA41083421845_032020-O.webp",
+    "id": "6"
+  },
+  {
+    "nombre": "Turbo Garret G30-660 Super Core",
+    "tipo": "turbo",
+    "precio": 48000,
+    "descripcion": "descripcion 1",
+    "img": "https://rcclin.cl/wp-content/uploads/2022/03/G30_SUPERCORE_LARGE.jpg",
+    "id": "7"
+  },
+  {
+    "nombre": "Turbo PARA Mercedes ML 320 CDI",
+    "tipo": "turbo",
+    "precio": 38000,
+    "descripcion": "descripcion 1",
+    "img": "https://alfi-turbo.com/8414-large_default/turbo-mercedes-ml-320-cdi-224-cv-6420900880-6420900086-6420900286-6420900486-781745-3-777318-1-764381-2.jpg",
+    "id": "8"
+  },
+  {
+    "nombre": "Turbo Para Sprinter 413",
+    "tipo": "turbo",
+    "precio": 38000,
+    "descripcion": "descripcion 1",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_977696-MLA70431557126_072023-O.webp",
+    "id": "9"
+  },
+  {
+    "nombre": "Llanta BBS Super RS 8,5x20",
+    "tipo": "llantas",
+    "precio": 28000,
+    "descripcion": "descripcion 1",
+    "img": "https://www.tunershop.es/media/catalog/product/f/e/felgen-bbs-bbs-super-rs-gold-felge-diagedr--0.jpg?store=es&image-type=image",
+    "id": "10"
+  },
+  {
+    "nombre": "Llanta Volcano Rocket Ferrari R18",
+    "tipo": "llantas",
+    "precio": 28000,
+    "descripcion": "descripcion 1",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_954500-MLA25637863201_062017-O.webp",
+    "id": "11"
+  },
+  {
+    "nombre": "Llanta Patricio Estrella",
+    "tipo": "llantas",
+    "precio": 48000,
+    "descripcion": "descripcion 1",
+    "img": "https://img.remediosdigitales.com/04b99b/1/1366_2000.jpg",
+    "id": "12"
+  },
+  {
+    "nombre": "Cigueñal motor Cummins",
+    "tipo": "ciguenal",
+    "precio": 48000,
+    "descripcion": "descripcion 1",
+    "img": "https://www.sufran.com.br/uploads/imagens/produtos/vb461-virabrequim-motor-cummins-isc-8-3-6-cil-60c34782e61c3_resize.jpg",
+    "id": "13"
+  },
+  {
+    "nombre": "Árbol de Leva Pointer Gti",
+    "tipo": "levas",
+    "precio": 18000,
+    "descripcion": "descripcion 1",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_822134-MLA53038750208_122022-O.webp",
+    "id": "14"
+  }
+]

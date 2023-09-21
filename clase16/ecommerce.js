@@ -1,22 +1,5 @@
 const dbProductos = [
-    {
-        id: 1,
-        nombre: "Remera",
-        precio: 1000,
-        imagen: "https://via.placeholder.com/150",
-    },
-    {
-        id: 2,
-        nombre: "Pantalon",
-        precio: 2000,
-        imagen: "https://via.placeholder.com/150",
-    },
-    {
-        id: 3,
-        nombre: "Zapatillas",
-        precio: 3000,
-        imagen: "https://via.placeholder.com/150",
-    },
+
 ];
 const DateTime = luxon.DateTime;
 
@@ -47,7 +30,6 @@ formulario.addEventListener("submit", (e) => {
     };
 
     dbProductos.push(producto);
-
 });
 
 // VENDER PRODUCTO
@@ -128,6 +110,7 @@ function renderizarCarrito() {
             inputProductos.value += `${producto.nombre} - ${producto.cantidad} \n`
         })
 
+
         Swal.fire({
             title: '¿Queres confirmar la compra?',
             text: "No puedes cancelar la misma!",
@@ -140,49 +123,51 @@ function renderizarCarrito() {
             reverseButtons: true
 
         }).then((result) => {
-            esperandoElpago().then((mensaje) => {
-                Swal.fire(
-                    'La recepcion del mail ha sido confirmada!',
-                    mensaje.mensaje,
-                    'success'
-                )
+            if (result.isConfirmed) {
 
-                console.log(DateTime.now().toLocaleString({ month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }))
-                emailjs.sendForm(serviceID, templateID, document.querySelector("#form"))
-                    .then(() => {
-                        Toastify({
-                            text: "Email enviado correctamente",
-                            duration: 3000,
-                            close: true,
-                            gravity: "top", // `top` or `bottom`
-                            position: "right", // `left`, `center` or `right`
-                            stopOnFocus: true, // Prevents dismissing of toast on hover
-                            style: {
-                                background: "linear-gradient(to right, #00b09b, #96c93d)",
-                            },
-                            onClick: function () { } // Callback after click
-                        }).showToast();
-                    }, (err) => {
-                        alert(JSON.stringify(err));
-                    });
-
-
-            }).finally(() => {
-                console.log("Se termino de ejecutar")
-            }).catch((error) => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: error.mensaje,
-                    footer: '<a href>Why do I have this issue?</a>'
+                esperandoElPago().then((res) => {
+                    Swal.fire(
+                        'La recepcion del mail ha sido confirmada!',
+                        res,
+                        'success'
+                    )
+                    emailjs.sendForm(serviceID, templateID, document.querySelector("#form"))
+                        .then(() => {
+                            Toastify({
+                                text: "Email enviado correctamente",
+                                duration: 3000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+                        }, (err) => {
+                            alert(JSON.stringify(err));
+                        });
+                }).catch((err) => {
+                    Swal.fire(
+                        'Error',
+                        err,
+                        'error'
+                    )
                 })
 
-            })
+
+            } else {
+                setTimeout(() => {
+                    Swal.fire(
+                        'Cancelado',
+                        'Tu compra ha sido cancelada',
+                        'error'
+                    )
+                }, 1000)
+            }
 
         })
-
-
-
     })
 }
 
@@ -259,40 +244,113 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function esperandoElpago() {
+
+function esperandoElPago() {
     return new Promise((resolve, reject) => {
-        const validarPago = Math.random() < 0.5
+        const validarPago = Math.random() < 0.5; // Nos devulve true o false(ES ALEATORIO)
         setTimeout(() => {
-            if (false) {
-                resolve({
-                    codigo: 200,
-                    mensaje: "El pago se realizo correctamente"
-                })
+            if (validarPago) {
+                resolve("El pago fue exitoso");
             } else {
-                reject({
-                    codigo: 400,
-                    mensaje: "El pago no se pudo realizar"
-                })
+                reject("El pago no fue exitoso");
             }
-        }, 5000)
-    })
+        }, 3000);
+    });
 }
 
 
-// let i = 0
 
-// function holaMundo() {
-//     console.log("HOLA MUNDO")
+setInterval(1000, rederizarSelect);
 
 
-// }
-// const intervaloA = setInterval(holaMundo, 1000)
 
-// setTimeout(() => {
-//     clearInterval(intervaloA)
-// }, 5000)
+// prueba tecnica
+
+console.log(1)
+setTimeout(() =>
+    console.log(2)
+)
+Promise.resolve().then(() => console.log(3))
+Promise.resolve().then(() => setTimeout(() => console.log(4)))
+Promise.resolve().then(() => console.log(5))
+setTimeout(() => console.log(6))
+console.log(7)
+
+// 1 3 5 7 2 4 6
 
 
-setInterval(() => {
-    rederizarSelect()
-}, 5000)
+// FETCHS
+
+function fetchDesdeJson() {
+    fetch("./productos.json")
+        .then(response => response.json())
+        .then(data => console.log(data))
+
+}
+
+fetchDesdeJson()
+
+
+function fetchAndThen() {
+    fetch("https://64ef7b6b219b3e2873c48fa2.mockapi.io/partesAuto")
+        .then(response => response.json())
+        .then(data => console.log(data))
+}
+
+fetchAndThen()
+
+
+async function fetchAsync() {
+    const resp = await fetch("https://64ef7b6b219b3e2873c48fa2.mockapi.io/partesAuto")
+    const data = await resp.json()
+    console.log(data)
+}
+
+fetchAsync()
+
+
+
+async function elimiarProducto(id) {
+    const resp = await fetch(`https://64ef7b6b219b3e2873c48fa2.mockapi.io/partesAuto/${id}`, {
+        method: "DELETE"
+    })
+    const data = await resp.json()
+    console.log(data)
+}
+
+async function agregarProducto(producto) {
+    const resp = await fetch(`https://64ef7b6b219b3e2873c48fa2.mockapi.io/partesAuto`, {
+        method: "POST",
+        body: JSON.stringify(producto),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await resp.json()
+    console.log(data)
+}
+
+async function modificarProducto(id, producto) {
+    const resp = await fetch(`https://64ef7b6b219b3e2873c48fa2.mockapi.io/partesAuto/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(producto),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await resp.json()
+    console.log(data)
+}
+
+
+async function patchProducto(id, producto) {
+    const resp = await fetch(`https://64ef7b6b219b3e2873c48fa2.mockapi.io/partesAuto/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(producto),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await resp.json()
+    console.log(data)
+}
